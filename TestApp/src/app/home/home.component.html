@@ -1,0 +1,56 @@
+<div class="modal-body row">
+    <div class="col-md-6">
+      <div>
+          <div *ngFor = "let item of personList">
+               
+              <table style="width:100%">
+                  <tr>
+                    <td  style="width: 33%">Name: {{item.fname}} {{item.lname}}</td>
+                    <td style="width: 33%"> Age: {{item.age}}</td>
+                    <td  style="float: right">
+                        <button class = "btn btn-danger" (click) = "deletePerson(item.fname, item.lname, item.age)"> Delete </button>
+                    </td>
+                  </tr>
+                </table>
+            </div>
+      </div>
+      <br><br>
+      <div>
+        <div class="input-group input-group-sm mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-sm">First Name</span>
+            </div>
+            <input [(ngModel)] = "fname" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+          </div>
+
+          <div class="input-group input-group-sm mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-sm">Last Name</span>
+            </div>
+            <input [(ngModel)] = "lname" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+          </div>
+
+          <div class="input-group input-group-sm mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-sm">Age</span>
+            </div>
+            <input [(ngModel)] = "age" type="number" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+          </div>
+
+          <button class = "btn btn-primary" (click) = "addPerson(fname, lname, age)"> Add Person </button>
+      </div>
+    </div>
+    <div class="col-md-6">
+        <h4 style="text-align:center">Pie Chart For People's Age
+          </h4>
+        
+        <div style="display: block">
+          <canvas baseChart
+                  [data]="pieChartData"
+                  [labels]="pieChartLabels"
+                  [chartType]="pieChartType"
+                  (chartHover)="chartHovered($event)"
+                  (chartClick)="chartClicked($event)"></canvas>
+        </div>
+    </div>
+  </div>
